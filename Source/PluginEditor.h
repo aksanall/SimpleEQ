@@ -47,5 +47,15 @@ private:
 
 	std::vector<juce::Component*> getComps();
 
+	using APVTS = juce::AudioProcessorValueTreeState;
+	using Attachment = APVTS::SliderAttachment;
+    Attachment lowCutFreqSliderAttachment, 
+               highCutFreqSliderAttachment, 
+               peakFreqSliderAttachment, 
+               peakGainSliderAttachment, 
+               peakQualitySliderAttachment,
+               lowCutSlopeSliderAttachment,
+		       highCutSlopeSliderAttachment;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SimpleEQAudioProcessorEditor)
 };
