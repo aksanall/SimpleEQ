@@ -13,6 +13,15 @@
 //==============================================================================
 /**
 */
+
+struct ChainSettings
+{
+    float lowCutFreq{0}, highCutFreq{0}, peakFreq{0}, peakGainInDecibels{0}, peakQuality{ 1.f };
+    int lowCutSlope{ 0 }, highCutSlope{ 0 };
+};  
+
+ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts);
+
 class SimpleEQAudioProcessor  : public juce::AudioProcessor
 {
 public:
@@ -52,6 +61,8 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+
+    ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts);
 
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     juce::AudioProcessorValueTreeState apvts{*this,nullptr,"parameter",createParameterLayout()};
