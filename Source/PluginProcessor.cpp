@@ -231,9 +231,6 @@ ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)
 void SimpleEQAudioProcessor::updatePeakFilter(const ChainSettings &chainSettings) {
     auto peakCoefficients = juce::dsp::IIR::Coefficients<float>::makePeakFilter(getSampleRate(),
         chainSettings.peakFreq, chainSettings.peakQuality, juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
-
-    //*leftChain.get<chainPositions::Peak>().coefficients = *peakCoefficients;
-    //*rightChain.get<chainPositions::Peak>().coefficients = *peakCoefficients;
     updateCoefficients(leftChain.get<chainPositions::Peak>().coefficients, peakCoefficients);
 	updateCoefficients(rightChain.get<chainPositions::Peak>().coefficients, peakCoefficients);
 }
